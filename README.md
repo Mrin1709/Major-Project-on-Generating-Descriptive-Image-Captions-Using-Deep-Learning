@@ -1,98 +1,93 @@
-# Major-Project-on-Generating-Descriptive-Image-Captions-Using-Deep-Learning
-📸✨ Image Caption Generator
-Deep Learning–Based System for Generating Descriptive Image Captions
-🚀 Overview
+# 📸✨ Image Caption Generator
 
-This project demonstrates a complete deep-learning pipeline that converts images into meaningful human-like captions. By combining InceptionV3 (CNN) for vision and LSTM for language generation—enhanced with attention mechanisms—the system learns to “see” an image and “describe” it in natural language.
+### *Deep Learning–Based System for Generating Descriptive Image Captions*
 
-It is designed, trained, and fine-tuned on the MS COCO dataset, achieving strong performance with coherent, context-aware captions.
+## 🚀 Overview
 
-🧠 Key Features
+This project presents a complete deep-learning pipeline capable of converting images into meaningful, human-like captions. It combines **InceptionV3** (as a CNN-based encoder) with an **LSTM-based decoder**, enhanced using an **attention mechanism** that helps the model focus on important regions within an image.
 
-✔️ Encoder–Decoder Architecture (InceptionV3 + LSTM)
-✔️ Attention Mechanism for focus on key image regions
-✔️ End-to-End Training with captions + images
-✔️ Fine-Tuning of CNN for improved visual understanding
-✔️ BLEU Score Evaluation (Quantitative & Qualitative)
-✔️ User-Friendly Code Structure (Feature extraction, tokenization, training pipeline)
+The system is trained and fine-tuned on the **MS COCO dataset**, enabling it to generate coherent, context-aware descriptions for a wide range of real-world scenes.
 
-📂 Dataset — MS COCO
+---
 
-330,000+ images
+## 🧠 Key Features
 
-1.5M+ object instances
+* Encoder–Decoder architecture using **InceptionV3 + LSTM**
+* **Attention Mechanism** for improved focus on key image regions
+* End-to-end training using paired images and captions
+* Fine-tuning of CNN layers for enhanced visual understanding
+* Evaluation using **BLEU Scores (quantitative)** and **manual inspection (qualitative)**
+* Clean, modular code structure for easy experimentation and extensions
 
-80 object categories, 91 “stuff” categories
+---
 
-5 human-written captions per image
+## 📂 Dataset — MS COCO
 
-Used for: object detection, segmentation, keypoints, and image captioning
+The MS COCO dataset is used for training and evaluation. It contains:
 
-COCO provides rich, diverse scenes—ideal for teaching models to understand real-world images.
+* **330,000+ images**
+* **1.5M+ object instances**
+* **80 object categories + 91 stuff categories**
+* **5 human-written captions per image**
 
-🛠️ Workflow Summary
-1️⃣ Dataset Preparation
+The dataset’s diversity and richness make it ideal for training models that need to understand real-world, multi-object scenes.
 
-Images resized to 299×299
+---
 
-Normalized to 0–1
+## 🛠️ Workflow Summary
 
-Captions tokenized, encoded, padded
+### **1️⃣ Dataset Preparation**
 
-Vocabulary built using Keras Tokenizer
+* Images resized to **299×299** and normalized
+* Captions tokenized, encoded, padded
+* Vocabulary built using Keras **Tokenizer**
 
-2️⃣ Feature Extraction (Encoder – CNN)
+### **2️⃣ Feature Extraction (Encoder – CNN)**
 
-A pre-trained InceptionV3 extracts high-level visual features by removing the classification head, outputting compact image representations.
+A pre-trained **InceptionV3** model (without its classification head) extracts high-level visual features, producing compact image representations.
 
-3️⃣ Caption Generation (Decoder – LSTM)
+### **3️⃣ Caption Generation (Decoder – LSTM)**
 
-An LSTM network takes the image features and generates captions word-by-word, ensuring sentence flow and grammar.
+An **LSTM-based decoder** takes the image features and generates captions sequentially, ensuring grammatical flow and context retention.
 
-4️⃣ Attention Mechanism
+### **4️⃣ Attention Mechanism**
 
-Allows the model to “look” at important regions while forming each word.
+The attention layer allows the model to selectively focus on important areas of the image when predicting each word.
 
-5️⃣ Training & Evaluation
+### **5️⃣ Training & Evaluation**
 
-Optimizer: Adam
+* **Optimizer:** Adam
+* **Loss:** Categorical Cross-Entropy
+* **Training/Validation split:** 80% / 20%
+* **Evaluation:** BLEU Score + Human Review
 
-Loss: Categorical Cross-Entropy
+### **6️⃣ Fine-Tuning**
 
-Split: 80% training / 20% validation
+* Unfreezing deeper CNN layers
+* Data augmentation (rotation, zoom, flip)
+* Leads to improved BLEU scores and more accurate captions
 
-Evaluation:
+---
 
-BLEU Score
+## 🔍 Results
 
-Human Inspection
+### ⭐ Strengths
 
-6️⃣ Fine-Tuning
+* Generates clear, context-aware, and grammatically correct captions
+* Captures object relationships effectively
+* Fine-tuned models show notably improved performance
 
-Unfreezing CNN layers → improves visual detail recognition
+### ⚠️ Challenges
 
-Data augmentation: rotation, zoom, flip
+* Difficulty with abstract or artistic images
+* Struggles with subtle interactions (emotions, implied actions)
+* Limited vocabulary for rare or unseen concepts
 
-Leads to higher BLEU scores and better captions
+---
 
-🔍 Results
-⭐ Strengths
+## 🧾 Project Structure
 
-Generates clear, grammatically correct, and relevant captions
-
-Understands relationships (e.g., “A cat is sitting on the sofa.”)
-
-Fine-tuned model performs significantly better
-
-⚠️ Challenges
-
-Struggles with abstract or artistic images
-
-Misses subtle interactions (e.g., whispering, emotion cues)
-
-Limited vocabulary for rare concepts not in COCO dataset
-
-🧾 Code Structure
+```
 ├── data/
 │   ├── annotations.json
 │   ├── images/
@@ -106,32 +101,37 @@ Limited vocabulary for rare concepts not in COCO dataset
 ├── tokenizer.json
 ├── captions_data.npz
 └── README.md
+```
 
-📘 Technologies Used
+---
 
-TensorFlow / Keras
+## 📘 Technologies Used
 
-NumPy, Pandas
+* TensorFlow / Keras
+* NumPy, Pandas
+* **InceptionV3 (ImageNet)**
+* LSTM & Attention Mechanism
+* MS COCO Dataset
 
-InceptionV3 (ImageNet)
+---
 
-LSTM, Attention Mechanism
+## 🌟 Conclusion
 
-MS COCO Dataset
+This project demonstrates how integrating CNNs and LSTMs—along with attention mechanisms—creates a powerful system for image captioning. The model performs well on common, natural scenes and establishes a strong foundation for future enhancements using modern multimodal architectures.
 
-🌟 Conclusion
+---
 
-This project successfully builds a complete image-captioning system that bridges vision and language. It demonstrates how CNNs and LSTMs can work together to generate meaningful image descriptions.
+## 🔮 Future Work
 
-The model works well for common, natural scenes and sets the stage for more advanced architectures.
+* Integrate **Vision Transformers (ViT)**
+* Explore transformer-based multimodal captioning models
+* Expand dataset to include rare/abstract concepts
+* Extend to **multilingual** caption generation
 
-🔮 Future Work
+---
 
-🚀 Integrate Vision Transformers (ViT)
-🤝 Use multimodal transformer-based captioning
-📈 Expand dataset for rare or abstract concepts
-🗣️ Add multilingual caption generation
+## 🙌 Team
 
-🙌 Team
+**Team-D — EvoAstra Major Project**
 
-Team-D — EvoAstra Major Project
+
